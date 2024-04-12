@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import { Button, Form, OverlayTrigger, Popover } from "react-bootstrap";
 
+const { Check, Group } = Form;
+
 export default function SummaryForm() {
   const [tcChecked, setTcChecked] = useState(false);
 
@@ -22,14 +24,14 @@ export default function SummaryForm() {
 
   return (
     <Form>
-      <Form.Group controlId="terms-and-conditions">
-        <Form.Check
+      <Group controlId="terms-and-conditions">
+        <Check
           type="checkbox"
           checked={tcChecked}
           onChange={(e) => setTcChecked(e.target.checked)}
           label={checkboxLabel}
         />
-      </Form.Group>
+      </Group>
       <Button variant="primary" type="submit" disabled={!tcChecked}>
         Confirm order
       </Button>
