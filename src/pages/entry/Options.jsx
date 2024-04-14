@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 
-import { Row } from "react-bootstrap";
+import { Alert, Row } from "react-bootstrap";
 
 import PropTypes from "prop-types";
 
 import axios from "axios";
 
-import ScoopOption from "./ScoopOption.jsx";
+import ScoopOption from "./ui/ScoopOption.jsx";
+import ToppingOption from "./ui/ToppingOption.jsx";
 
 export default function Options({ optionType }) {
   const [items, setItems] = useState([]);
-
-  console.log(items, "items");
+  const [isError, setIsError] = useState(false);
 
   // optionType is 'scoops' or 'toppings'
   useEffect(() => {
@@ -20,11 +20,13 @@ export default function Options({ optionType }) {
       .then((response) => setItems(response.data))
       .catch(() => {
         //TODO: handle error response
+        setIsError(true);
       });
   }, [optionType]);
 
-  //TODO: replace 'null' with ToppingOption when available
-  const ItemComponent = optionType === "scoops" ? ScoopOption : null;
+  if (isError) return <Alert severity="error">{isError}</Alert>;
+
+  const ItemComponent = optionType === "scoops" ? ScoopOption : ToppingOption;
 
   const optionItems = items.map((item) => (
     <ItemComponent
