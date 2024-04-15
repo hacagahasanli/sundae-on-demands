@@ -1,6 +1,6 @@
 import { http, HttpResponse } from "msw";
 
-const BASE_URL = "http://localhost:3030";
+export const BASE_URL = "http://localhost:3030";
 
 export const handlers = [
   http.get(`${BASE_URL}/scoops`, () =>

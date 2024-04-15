@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 
-import { Alert, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 
 import PropTypes from "prop-types";
 
 import axios from "axios";
+
+import { BASE_URL } from "../../mocks/handlers.js";
+
+import AlertBanner from "../common/AlertBanner.jsx";
 
 import ScoopOption from "./ui/ScoopOption.jsx";
 import ToppingOption from "./ui/ToppingOption.jsx";
@@ -16,15 +20,12 @@ export default function Options({ optionType }) {
   // optionType is 'scoops' or 'toppings'
   useEffect(() => {
     axios
-      .get(`http://localhost:3030/${optionType}`)
+      .get(`${BASE_URL}/${optionType}`)
       .then((response) => setItems(response.data))
-      .catch(() => {
-        //TODO: handle error response
-        setIsError(true);
-      });
+      .catch(() => setIsError(true));
   }, [optionType]);
 
-  if (isError) return <Alert severity="error">{isError}</Alert>;
+  if (isError) return <AlertBanner />;
 
   const ItemComponent = optionType === "scoops" ? ScoopOption : ToppingOption;
 

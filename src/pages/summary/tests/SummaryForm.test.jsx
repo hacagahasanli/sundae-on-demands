@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 
 import userEvent from "@testing-library/user-event";
 
-import SummaryForm from "../summary/SummaryForm.jsx";
+import SummaryForm from "../SummaryForm.jsx";
 
 test("Initial conditions", () => {
   render(<SummaryForm />);
