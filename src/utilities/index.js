@@ -21,3 +21,7 @@ export function formatCurrency(currency) {
     minimumFractionDigits: 2,
   }).format(currency);
 }
+
+export const keys = (value) => Object.keys(value) ?? [];
+
+export const entries = (value) => Object.entries(value) ?? [];

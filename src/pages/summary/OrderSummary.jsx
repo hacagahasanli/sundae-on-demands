@@ -2,20 +2,20 @@ import React from "react";
 
 import SummaryForm from "./SummaryForm.jsx";
 
-import { formatCurrency } from "../../utilities/index.js";
+import { entries, formatCurrency, keys } from "../../utilities/index.js";
 
 import { useOrderDetails } from "../../contexts/OrderDetails.jsx";
 
 export default function OrderSummary() {
   const { totals, optionsCount } = useOrderDetails();
 
-  const scoopList = Object.entries(optionsCount.scoops)?.map(([key, value]) => (
+  const scoopList = entries(optionsCount.scoops)?.map(([key, value]) => (
     <li key={key}>
       {value} {key}
     </li>
   ));
 
-  const toppingList = Object.keys(optionsCount.toppings)?.map((key) => (
+  const toppingList = keys(optionsCount.toppings)?.map((key) => (
     <li key={key}>{key}</li>
   ));
 
