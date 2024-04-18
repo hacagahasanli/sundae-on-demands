@@ -1,5 +1,3 @@
-import React from "react";
-
 import SummaryForm from "./SummaryForm.jsx";
 
 import { entries, formatCurrency, keys } from "../../utilities/index.js";

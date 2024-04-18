@@ -20,9 +20,10 @@ import { formatCurrency } from "../../utilities/index.js";
 import { useOrderDetails } from "../../contexts/OrderDetails.jsx";
 
 export default function Options({ optionType }) {
+  const { totals } = useOrderDetails();
+
   const [items, setItems] = useState([]);
   const [isError, setIsError] = useState(false);
-  const { totals } = useOrderDetails();
 
   // optionType is 'scoops' or 'toppings'
   useEffect(() => {
@@ -49,9 +50,7 @@ export default function Options({ optionType }) {
     <>
       <h2>{title}</h2>
       <p>{`${formatCurrency(PRICE_PER_ITEM[optionType])} each`}</p>
-      <p>
-        {title} total: {formatCurrency(totals[optionType])}
-      </p>
+      <p>{`${title} total: ${formatCurrency(totals[optionType])}`}</p>
       <Row>{optionItems}</Row>;
     </>
   );
